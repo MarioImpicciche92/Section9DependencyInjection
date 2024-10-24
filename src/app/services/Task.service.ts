@@ -5,9 +5,15 @@ import { Task } from "../tasks/task.model";
     providedIn:'root'
 })
 export class TaskService{
-    tasks= signal<Task[]>([]);
+    private tasks= signal<Task[]>([]);
+    allTasks=this.tasks.asReadonly();
 
     addTaskData(taskData:{title:string;description:string}){
-        this.tasks.update((oldTasks) => [...oldTasks]);
+        const newTask:Task={
+            ...taskData,
+            id:Math.random().toString(),
+            status:'OPEN'
+        };
+        this.tasks.update((oldTasks) => [...oldTasks,newTask]);
     }
 }
