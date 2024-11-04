@@ -19,4 +19,6 @@ export class NewTaskComponent {
     this.taskService.addTaskData({title,description})
     this.formEl()?.nativeElement.reset();
   }
+
+ 
 }
